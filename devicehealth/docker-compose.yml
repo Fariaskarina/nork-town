@@ -1,0 +1,26 @@
+version: "3.6"
+
+services:
+  app:
+    image: mysql:5.7
+    command: sh -c "yarn install && yarn run dev"
+    ports:
+      - 3306:3306
+    working_dir: /app
+    volumes:
+      - ./:/app
+    environment:
+      MYSQL_HOST: localhost
+      MYSQL_USER: root
+      MYSQL_PASSWORD: <karina1243>
+      MYSQL_DB: todos
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - todo-mysql-data:/var/lib/mysql
+    environment: 
+      MYSQL_ROOT_PASSWORD: <karina1243>
+      MYSQL_DATABASE: todos
+
+volumes:
+  todo-mysql-data:
